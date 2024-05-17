@@ -7,18 +7,14 @@ import "@fontsource/roboto/700.css";
 import "./App.css";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Routes from "./Routes";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div></div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Signup />
-        <Login />
-      </div>
+      <Routes />
     </>
   );
 }
