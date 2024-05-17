@@ -1,9 +1,14 @@
 import { Box, Button, TextField } from "@mui/material";
 import React from "react";
 import { handleUserLogin } from "../services/userServices";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/authUser";
 
 function Login() {
-  const handleLogin = (e) => {
+  const currentUser = useSelector((state) => state.authUser.value);
+  const dispatch = useDispatch();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -14,14 +19,15 @@ function Login() {
       data[key] = value;
     });
 
-    console.log(data);
-    handleUserLogin(data);
-    return data;
+    const result = await handleUserLogin(data);
+    console.log(result);
+    dispatch(login({ ...result.data.user, token: result.data.token }));
+    return result;
   };
 
   return (
     <Box>
-      <div>Login</div>
+      <div>Login {JSON.stringify(currentUser)}</div>
       <form
         style={{
           display: "flex",
