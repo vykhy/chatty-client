@@ -2,16 +2,48 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const chatsSlice = createSlice({
   name: "todos",
-  initialState: [],
+  initialState: new Array(),
   reducers: {
     addChat(state, action) {
-      state.value.push = action.payload;
+      const {
+        chat_id,
+        user_id,
+        profile_picture,
+        email,
+        username,
+        messages,
+        page,
+        created_at,
+      } = action.payload;
+      console.log(action.payload);
+      state.push({
+        chat_id,
+        user_id,
+        profile_picture,
+        email,
+        username,
+        messages,
+        page,
+        created_at,
+      });
     },
-    logout(state, action) {
-      state.value = {};
+    addMessage(state, action) {
+      const { chat_id, message } = action.payload;
+      state.value.forEach((chat) => {
+        if (chat.chat_id === chat_id) {
+          chat.messages = [message, ...chat.messages];
+        }
+      });
+    },
+    chatsLoaded(state, action) {
+      return action.payload;
+    },
+    removeChats(state, action) {
+      return [];
     },
   },
 });
 
-export const { login, logout } = authUserSlice.actions;
-export default authUserSlice.reducer;
+export const { addChat, addMessage, chatsLoaded, removeChats } =
+  chatsSlice.actions;
+export default chatsSlice.reducer;

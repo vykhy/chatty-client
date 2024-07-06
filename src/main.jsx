@@ -4,11 +4,29 @@ import App from "./App.jsx";
 import "./index.css";
 import store from "./../store/store";
 import { Provider } from "react-redux";
+import { SocketProvider } from "./contexts/SocketContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <SocketProvider>
+        <App />
+      </SocketProvider>
     </Provider>
   </React.StrictMode>
 );
+
+// Initial load chats *
+// Create chat test *
+// Multi device support
+// Send message live
+// - Chat UI
+// - Message Box
+// - Message List
+// - Message Input
+// Receive message live
+// Load chats with messages in order
+// Sent, received and read receipts
+// Group chats
+// Message pagination
+// User profiles
