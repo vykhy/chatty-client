@@ -5,10 +5,10 @@ const authUserSlice = createSlice({
   initialState: {},
   reducers: {
     login(state, action) {
-      state.value = action.payload;
+      return action.payload;
     },
     logout(state, action) {
-      state.value = {};
+      return {};
     },
   },
 });

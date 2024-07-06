@@ -15,7 +15,6 @@ const chatsSlice = createSlice({
         page,
         created_at,
       } = action.payload;
-      console.log(action.payload);
       state.push({
         chat_id,
         user_id,
@@ -35,6 +34,23 @@ const chatsSlice = createSlice({
         }
       });
     },
+    addNewMessage(state, action) {
+      const {
+        user_id,
+        message_id,
+        chat_id,
+        content,
+        createdAt: created_at,
+      } = action.payload;
+      state.forEach((chat) => {
+        if (chat.chat_id === chat_id) {
+          chat.messages = [
+            ...chat.messages,
+            { user_id, message_id, content, created_at },
+          ];
+        }
+      });
+    },
     chatsLoaded(state, action) {
       return action.payload;
     },
@@ -44,6 +60,6 @@ const chatsSlice = createSlice({
   },
 });
 
-export const { addChat, addMessage, chatsLoaded, removeChats } =
+export const { addChat, addMessage, chatsLoaded, removeChats, addNewMessage } =
   chatsSlice.actions;
 export default chatsSlice.reducer;

@@ -8,7 +8,7 @@ const url =
     : process.env.REACT_APP_BACKEND_URL;
 
 function useAxiosInstance() {
-  const authUser = useSelector((state) => state.authUser.value);
+  const authUser = useSelector((state) => state.authUser);
 
   const axiosInstance = axios.create({
     baseURL: url,

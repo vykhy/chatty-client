@@ -2,7 +2,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
-import { addChat, chatsLoaded, removeChats } from "../../store/chats";
+import {
+  addChat,
+  addNewMessage,
+  chatsLoaded,
+  removeChats,
+} from "../../store/chats";
 import useAxiosInstance from "../services/useAxiosInstance";
 
 const url =
@@ -15,7 +20,7 @@ const SocketContext = createContext();
 export const useSocket = () => useContext(SocketContext);
 
 export const SocketProvider = ({ children }) => {
-  const authUser = useSelector((state) => state.authUser.value);
+  const authUser = useSelector((state) => state.authUser);
   const [socket, setSocket] = useState(null);
   const { axiosInstance } = useAxiosInstance();
 
@@ -46,13 +51,12 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket?.on("chat-created", (data) => {
-      console.log("chat-created", { data });
-      dispatch(addChat(data));
-    });
+    socket?.on("chat-created", (data) => dispatch(addChat(data)));
+    socket?.on("new-message", (data) => dispatch(addNewMessage(data)));
 
     return () => {
       socket?.off("chat-created");
+      socket?.off("new-message");
     };
   }, [socket]);
 

@@ -19,14 +19,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // Initial load chats *
 // Create chat test *
 // Multi device support
-// Send message live
-// - Chat UI
-// - Message Box
-// - Message List
-// - Message Input
-// Receive message live
-// Load chats with messages in order
-// Sent, received and read receipts
+// Send message live *
+// - Chat UI *
+// - Message Box *
+// - Message List *
+// - Message Input *
+// Receive message live *
+// Load chats with messages in order *
+// delivered and read receipts
 // Group chats
 // Message pagination
 // User profiles

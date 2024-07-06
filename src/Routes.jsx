@@ -13,10 +13,10 @@ import Users from "./pages/Users";
 import Layout from "./components/Layout";
 
 function Routes() {
-  const authUser = useSelector((state) => state.authUser.value);
+  const authUser = useSelector((state) => state.authUser);
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout style={{ minWidth: "100%" }}>
         <RoutesWrapper>
           <Route path="/" element={<Home />} />
           <Route path="/chat/:id" element={<Home />} />

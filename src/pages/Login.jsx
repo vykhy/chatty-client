@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/authUser";
 
 function Login() {
-  const currentUser = useSelector((state) => state.authUser.value);
+  const currentUser = useSelector((state) => state.authUser);
   const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
