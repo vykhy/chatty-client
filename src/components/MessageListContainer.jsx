@@ -1,7 +1,9 @@
 import React from "react";
 import Message from "./Message";
 
-function MessageListContainer({ messages = [] }) {
+function MessageListContainer({ chat }) {
+  const messages = chat?.messages || [];
+
   return (
     <div>
       {messages?.map((message, i) => (

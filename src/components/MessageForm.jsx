@@ -10,8 +10,8 @@ function MessageForm({ chatId }) {
 
   const handleSend = () => {
     socket.emit("send-message", {
-      chatId,
-      userId: authUser.user_id,
+      chat_id: chatId,
+      user_id: authUser.user_id,
       content: text,
     });
     setText("");

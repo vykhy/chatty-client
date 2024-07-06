@@ -51,6 +51,36 @@ const chatsSlice = createSlice({
         }
       });
     },
+    messageDelivered(state, action) {
+      const { chat_id, message_id, delivered_at } = action.payload;
+
+      state.forEach((chat) => {
+        if (chat.chat_id == chat_id) {
+          chat.messages = chat.messages.map((message) => {
+            if (message.message_id == message_id) {
+              return { ...message, delivered_at };
+            }
+            return message;
+          });
+        }
+      });
+      return state;
+    },
+    messageRead(state, action) {
+      const { chat_id, message_id, read_at } = action.payload;
+
+      state.forEach((chat) => {
+        if (chat.chat_id == chat_id) {
+          chat.messages = chat.messages.map((message) => {
+            if (message.message_id == message_id) {
+              return { ...message, read_at };
+            }
+            return message;
+          });
+        }
+      });
+      return state;
+    },
     chatsLoaded(state, action) {
       return action.payload;
     },
@@ -60,6 +90,13 @@ const chatsSlice = createSlice({
   },
 });
 
-export const { addChat, addMessage, chatsLoaded, removeChats, addNewMessage } =
-  chatsSlice.actions;
+export const {
+  addChat,
+  addMessage,
+  chatsLoaded,
+  removeChats,
+  addNewMessage,
+  messageDelivered,
+  messageRead,
+} = chatsSlice.actions;
 export default chatsSlice.reducer;
