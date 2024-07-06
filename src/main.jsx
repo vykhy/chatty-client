@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 // Initial load chats *
 // Create chat test *
-// Multi device support
+// Multi device support *
 // Send message live *
 // - Chat UI *
 // - Message Box *
