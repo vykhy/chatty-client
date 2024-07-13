@@ -4,6 +4,7 @@ import ChatRoomHeader from "./ChatRoomHeader";
 import MessageListContainer from "./MessageListContainer";
 import MessageForm from "./MessageForm";
 import { useSocket } from "../contexts/SocketContext";
+import { Box } from "@mui/material";
 
 function ChatRoom({ chatId }) {
   const chat = useSelector((state) =>
@@ -27,11 +28,11 @@ function ChatRoom({ chatId }) {
   }, [chatId, chat.messages.length, socket]);
 
   return (
-    <div>
+    <Box style={{ maxHeight: "100vh", width: "100%", position: "relative" }}>
       <ChatRoomHeader chat={chat} />
       <MessageListContainer chat={chat} />
       <MessageForm chatId={chat.chat_id} />
-    </div>
+    </Box>
   );
 }
 

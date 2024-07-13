@@ -9,6 +9,7 @@ function MessageForm({ chatId }) {
   const socket = useSocket();
 
   const handleSend = () => {
+    if (text.trim() === "") return;
     socket.emit("send-message", {
       chat_id: chatId,
       user_id: authUser.user_id,
@@ -17,9 +18,22 @@ function MessageForm({ chatId }) {
     setText("");
   };
   return (
-    <Box style={{ display: "flex" }}>
-      <TextField value={text} onChange={(e) => setText(e.target.value)} />
-      <Button onClick={handleSend}>Send</Button>
+    <Box
+      style={{
+        display: "flex",
+      }}
+    >
+      <TextField
+        value={text}
+        style={{ width: "90%" }}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSend();
+        }}
+      />
+      <Button variant="contained" style={{ width: "10%" }} onClick={handleSend}>
+        Send
+      </Button>
     </Box>
   );
 }

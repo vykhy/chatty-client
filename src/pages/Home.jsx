@@ -13,11 +13,11 @@ function Home() {
         style={{
           display: "flex",
           width: "100%",
-          height: "100%",
+          height: "100vh",
         }}
       >
         <ChatList style={{ width: "20%" }} />
-        <Box style={{ width: "80%" }}>
+        <Box style={{ width: "100%" }}>
           {chatId ? <ChatRoom chatId={chatId} /> : "No chat selected"}
         </Box>
       </Box>

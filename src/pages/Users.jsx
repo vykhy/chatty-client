@@ -23,8 +23,13 @@ function Users() {
       <Container>
         <TextField
           value={searchText}
+          style={{
+            width: "100%",
+            margin: "0.3rem",
+          }}
           onChange={(e) => setSearchText(e.target.value)}
         ></TextField>
+        <hr />
         {users?.map((user) => (
           <UserItem user={user} key={user.user_id} />
         ))}

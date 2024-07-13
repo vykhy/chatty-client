@@ -14,9 +14,6 @@ function App() {
 
   return (
     <Box>
-      {socket?.connected ? "Connected" : "Not connected"}
-      {JSON.stringify(socket?.id)}
-      <br />
       <Routes />
     </Box>
   );

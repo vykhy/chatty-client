@@ -19,41 +19,46 @@ function Routes() {
     <BrowserRouter>
       <Layout style={{ minWidth: "100%" }}>
         <RoutesWrapper>
-          <Route
-            path="/"
-            element={
-              <AuthProtected>
-                <Home />
-              </AuthProtected>
-            }
-          />
-          <Route
-            path="/chat/:id"
-            element={
-              <AuthProtected>
-                <Home />
-              </AuthProtected>
-            }
-          />
-          <Route
-            path="/users"
-            element={
-              <AuthProtected>
-                <Users />
-              </AuthProtected>
-            }
-          />
-          <Route
-            path="/profile/:userId"
-            element={
-              <AuthProtected>
-                <Users />
-              </AuthProtected>
-            }
-          />
+          {authUser?.user_id && (
+            <>
+              <Route
+                path="/"
+                element={
+                  <AuthProtected>
+                    <Home />
+                  </AuthProtected>
+                }
+              />
+              <Route
+                path="/chat/:id"
+                element={
+                  <AuthProtected>
+                    <Home />
+                  </AuthProtected>
+                }
+              />
+              <Route
+                path="/users"
+                element={
+                  <AuthProtected>
+                    <Users />
+                  </AuthProtected>
+                }
+              />
+              <Route
+                path="/profile/:userId"
+                element={
+                  <AuthProtected>
+                    <Users />
+                  </AuthProtected>
+                }
+              />
+            </>
+          )}
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Error404 />} />
+          <Route path="*" element={<Login />} />
         </RoutesWrapper>
       </Layout>
     </BrowserRouter>

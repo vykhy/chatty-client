@@ -13,7 +13,13 @@ function UserItem({ user }) {
 
   return (
     <ListItem>
-      <ListItemText>{user.username}</ListItemText>
+      <img
+        src={user.profile_picture || "./vite.svg"}
+        height={20}
+        style={{ marginRight: 10, borderRadius: "50%" }}
+        width={20}
+      />
+      <ListItemText secondary={user.email}>{user.username}</ListItemText>
       <Button onClick={createChat} variant="contained">
         Create Chat
       </Button>

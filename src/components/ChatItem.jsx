@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, ListItem, ListItemText, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,19 +9,28 @@ function ChatItem({ chat }) {
   };
   const messageCount = chat.messages?.length || 0;
   return (
-    <Box
+    <ListItem
       style={{ display: "flex", cursor: "pointer" }}
       onClick={handleChatClick}
     >
-      <img width={20} height={20} src={chat.profile_picture || "./vite.svg"} />
+      <img
+        width={20}
+        height={20}
+        style={{ marginRight: 10, borderRadius: "50%" }}
+        src={chat.profile_picture || "./vite.svg"}
+      />
       <Box>
         {" "}
-        <Typography variant="h6">{chat.username}</Typography>
-        <Typography variant="body2">
-          {chat.messages[messageCount - 1]?.content || "No messages yet"}
-        </Typography>
+        <ListItemText
+          secondary={
+            chat.messages[messageCount - 1]?.content || "No messages yet"
+          }
+          variant="h6"
+        >
+          {chat.username}
+        </ListItemText>
       </Box>
-    </Box>
+    </ListItem>
   );
 }
 
